@@ -5,6 +5,9 @@ export type StatRange = {
     max: number;
 };
 
+export type SortBy = "name" | "generation" | "attack" | "defense" | "speed" | "hp";
+export type SortOrder = "asc" | "desc";
+
 export type FilterState = {
     search: string;
     types: string[];
@@ -25,6 +28,10 @@ export type FilterState = {
         range: StatRange
     ) => void;
     resetFilters: () => void;
+    sortBy: SortBy;
+    sortOrder: SortOrder;
+    setSortBy: (value: SortBy) => void;
+    setSortOrder: (value: SortOrder) => void;
 };
 
 const DEFAULT_STATS: FilterState["stats"] = {
@@ -40,6 +47,8 @@ export const useFilterStore = create<FilterState>((set) => ({
     generation: [],
     abilities: [],
     stats: DEFAULT_STATS,
+    sortBy: "name",
+    sortOrder: "asc",
     setSearch: (value) => set({ search: value }),
     toggleType: (type) =>
         set((state) => ({
@@ -66,6 +75,8 @@ export const useFilterStore = create<FilterState>((set) => ({
                 [stat]: range,
             },
         })),
+    setSortBy: (value) => set({ sortBy: value }),
+    setSortOrder: (value) => set({ sortOrder: value }),
     resetFilters: () =>
         set({
             search: "",
@@ -73,5 +84,7 @@ export const useFilterStore = create<FilterState>((set) => ({
             generation: [],
             abilities: [],
             stats: DEFAULT_STATS,
+            sortBy: "name",
+            sortOrder: "asc",
         }),
 }));

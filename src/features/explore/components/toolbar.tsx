@@ -4,6 +4,7 @@ import { AbilityFilter } from "./abilityFilter";
 import { GenerationFilter } from "./generationFilter";
 import { StatsFilter } from "./statsFilter";
 import { Search } from "./search";
+import { Sort } from "./sort";
 
 export function Toolbar() {
   const resetFilters = useFilterStore((s) => s.resetFilters);
@@ -24,6 +25,7 @@ export function Toolbar() {
       <AbilityFilter />
       <GenerationFilter />
       <StatsFilter />
+      <Sort />
       <div className="flex-1" />
       <button
         onClick={resetFilters}
