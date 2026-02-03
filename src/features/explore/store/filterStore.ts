@@ -32,6 +32,10 @@ export type FilterState = {
     sortOrder: SortOrder;
     setSortBy: (value: SortBy) => void;
     setSortOrder: (value: SortOrder) => void;
+    page: number;
+    pageSize: number;
+    setPage: (page: number) => void;
+    setPageSize: (size: number) => void;
 };
 
 const DEFAULT_STATS: FilterState["stats"] = {
@@ -42,6 +46,8 @@ const DEFAULT_STATS: FilterState["stats"] = {
 };
 
 export const useFilterStore = create<FilterState>((set) => ({
+    page: 1,
+    pageSize: 20,
     search: "",
     types: [],
     generation: [],
@@ -49,24 +55,27 @@ export const useFilterStore = create<FilterState>((set) => ({
     stats: DEFAULT_STATS,
     sortBy: "name",
     sortOrder: "asc",
-    setSearch: (value) => set({ search: value }),
+    setSearch: (value) => set({ search: value, page: 1 }),
     toggleType: (type) =>
         set((state) => ({
             types: state.types.includes(type)
                 ? state.types.filter((t) => t !== type)
                 : [...state.types, type],
+            page: 1,
         })),
     toggleGeneration: (gen) =>
         set((state) => ({
             generation: state.generation.includes(gen)
                 ? state.generation.filter((g) => g !== gen)
                 : [...state.generation, gen],
+            page: 1,
         })),
     toggleAbility: (ability) =>
         set((state) => ({
             abilities: state.abilities.includes(ability)
                 ? state.abilities.filter((a) => a !== ability)
                 : [...state.abilities, ability],
+            page: 1,
         })),
     setStatRange: (stat, range) =>
         set((state) => ({
@@ -75,8 +84,10 @@ export const useFilterStore = create<FilterState>((set) => ({
                 [stat]: range,
             },
         })),
-    setSortBy: (value) => set({ sortBy: value }),
-    setSortOrder: (value) => set({ sortOrder: value }),
+    setSortBy: (value) => set({ sortBy: value, page: 1 }),
+    setSortOrder: (value) => set({ sortOrder: value, page: 1 }),
+    setPage: (value) => set({ page: value }),
+    setPageSize: (value) => set({ pageSize: value }),
     resetFilters: () =>
         set({
             search: "",

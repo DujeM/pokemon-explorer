@@ -6,6 +6,7 @@ import { useState } from "react";
 import { PokemonDetailsModal } from "./pokemonDetails";
 import { Toolbar } from "./toolbar";
 import { useFilteredPokemon } from "../hooks/useFilteredPokemon";
+import { Pagination } from "./pagination";
 
 export function Grid() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
@@ -14,13 +15,13 @@ export function Grid() {
   const { data: pokemonDetailsList = [] } = usePokemonDetailsList(
     pokemonList?.map((pokemon: PokemonListItem) => pokemon.id)
   );
-  const filteredPokemon = useFilteredPokemon(pokemonDetailsList);
+  const { total, items } = useFilteredPokemon(pokemonDetailsList);
 
   return (
     <>
       <Toolbar />
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {filteredPokemon.slice(0, 20).map((pokemon) => (
+        {items.map((pokemon) => (
           <PokemonCard
             key={pokemon.id}
             {...pokemon}
@@ -28,6 +29,7 @@ export function Grid() {
           />
         ))}
       </div>
+      <Pagination total={total} />
       <PokemonDetailsModal
         pokemonId={selectedId}
         onClose={() => setSelectedId(null)}

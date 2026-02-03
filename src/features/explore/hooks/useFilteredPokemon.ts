@@ -8,7 +8,15 @@ export function useFilteredPokemon(filterIndex: PokemonFilterData[]) {
     const filters = useFilterStore();
 
     return useMemo(
-        () => sortPokemon(filterIndex.filter((p) => filterPokemon(p, filters)), filters),
+        () => {
+            const filteredAndSortedList = sortPokemon(filterIndex.filter((p) => filterPokemon(p, filters)), filters)
+            const start = (filters.page - 1) * filters.pageSize;
+            const end = start + filters.pageSize;
+            return {
+                items: filteredAndSortedList.slice(start, end),
+                total: filteredAndSortedList.length,
+            };
+        },
         [filterIndex, filters]
     );
 }
