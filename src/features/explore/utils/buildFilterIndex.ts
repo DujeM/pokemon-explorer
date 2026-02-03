@@ -8,11 +8,9 @@ export async function buildFilterIndex(
   const queue = [...ids];
   const workers: Promise<void>[] = [];
 
-  console.log(queue);
   async function worker() {
     while (queue.length) {
       const id = queue.shift();
-      console.log(id);
       if (!id) return;
 
       try {
