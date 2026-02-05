@@ -7,6 +7,7 @@ import { Search } from "./search";
 import { Sort } from "./sort";
 
 import { Loading } from "@/shared/components/loading";
+import { FavoritesFilter } from "./favoritesFilter";
 
 export function Toolbar({ isLoading = false }: { isLoading?: boolean }) {
   const resetFilters = useFilterStore((s) => s.resetFilters);
@@ -31,6 +32,7 @@ export function Toolbar({ isLoading = false }: { isLoading?: boolean }) {
       <GenerationFilter />
       <StatsFilter />
       <Sort />
+      <FavoritesFilter />
       <div className="flex-1" />
       <button
         onClick={resetFilters}

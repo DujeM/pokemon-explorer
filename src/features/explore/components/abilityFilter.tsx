@@ -14,7 +14,6 @@ export function AbilityFilter() {
 
   return (
     <Filter label="Ability">
-      {/* Ability search input */}
       <div className="mb-2">
         <input
           type="text"

@@ -11,17 +11,14 @@ export function usePokemonDetailsList(ids: number[], hasActiveFilters = false) {
     queryFn: async () => {
       const index: PokemonFilterData[] = [];
       if (hasActiveFilters) {
-        // For active filters, wait for all summaries to be fetched before returning
         await buildFilterIndex(ids, (summary) => {
           index.push(summary);
         });
-        // Set the cache after all items are ready, not incrementally
         queryClient.setQueryData<PokemonFilterData[]>(
           ["pokemon", "details-list"],
           index
         );
       } else {
-        // For no active filters, update the cache incrementally as before
         await buildFilterIndex(ids, (summary) => {
           index.push(summary);
           queryClient.setQueryData<PokemonFilterData[]>(

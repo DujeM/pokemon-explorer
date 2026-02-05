@@ -38,6 +38,8 @@ export type FilterState = {
     setPage: (page: number) => void;
     setPageSize: (size: number) => void;
     setFromUrl: (filters: Partial<FilterState>) => void;
+    showOnlyFavorites: boolean;
+    setShowOnlyFavorites: (value: boolean) => void;
 };
 
 const DEFAULT_STATS: FilterState["stats"] = {
@@ -58,6 +60,7 @@ export const useFilterStore = create<FilterState>((set) => ({
     stats: DEFAULT_STATS,
     sortBy: "",
     sortOrder: "",
+    showOnlyFavorites: false,
     setSearch: (value) => set({ search: value, page: 1 }),
     toggleType: (type) =>
         set((state) => ({
@@ -108,4 +111,5 @@ export const useFilterStore = create<FilterState>((set) => ({
             ...filters,
             hydrated: true,
         })),
+    setShowOnlyFavorites: (value) => set({ showOnlyFavorites: value }),
 }));

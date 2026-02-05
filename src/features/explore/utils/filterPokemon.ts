@@ -3,8 +3,16 @@ import type { FilterState } from "../store/filterStore";
 
 export function filterPokemon(
     pokemon: PokemonFilterData,
-    filters: FilterState
+    filters: FilterState,
+    favorites: number[] = []
 ): boolean {
+    if (
+        filters.showOnlyFavorites &&
+        !favorites.find(f => f === pokemon.id)
+    ) {
+        return false;
+    }
+
     if (
         filters.search &&
         !pokemon.name.toLowerCase().includes(filters.search.toLowerCase())
