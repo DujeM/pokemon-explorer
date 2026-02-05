@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import { Explore } from "./routes/explore";
 import { Layout } from "../shared/components/layout";
+import Compare from "./routes/compare";
 
 export function AppRouter() {
   return useRoutes([
@@ -15,6 +16,16 @@ export function AppRouter() {
         {
           index: true,
           element: <Explore />,
+        },
+      ],
+    },
+    {
+      path: "/compare",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Compare />,
         },
       ],
     },
