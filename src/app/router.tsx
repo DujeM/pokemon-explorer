@@ -2,6 +2,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import { Explore } from "./routes/explore";
 import { Layout } from "../shared/components/layout";
 import Compare from "./routes/compare";
+import { Team } from "./routes/team";
 
 export function AppRouter() {
   return useRoutes([
@@ -26,6 +27,16 @@ export function AppRouter() {
         {
           index: true,
           element: <Compare />,
+        },
+      ],
+    },
+    {
+      path: "/team",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Team />,
         },
       ],
     },

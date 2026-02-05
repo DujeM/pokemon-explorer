@@ -20,6 +20,9 @@ export function Navbar() {
           <Link to="/compare" className="text-base font-bold hover:underline">
             Compare
           </Link>
+          <Link to="/team" className="text-base font-bold hover:underline">
+            Team
+          </Link>
         </div>
       </div>
     </nav>

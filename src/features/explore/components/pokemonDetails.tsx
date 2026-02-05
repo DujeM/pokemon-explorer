@@ -3,6 +3,7 @@ import { Modal } from "@/shared/components/modal";
 import { usePokemonDetails } from "../hooks/usePokemonDetails";
 import type { PokemonStat } from "../api/pokemonApi";
 import { CircleX } from "lucide-react";
+import { useTeamStore } from "@/features/team/store/teamStore";
 
 type Props = {
   pokemonId: number | null;
@@ -12,6 +13,7 @@ type Props = {
 export function PokemonDetailsModal({ pokemonId, onClose }: Props) {
   const { data, isLoading } = usePokemonDetails(pokemonId);
   const [flavorText, setFlavorText] = useState<string | null>(null);
+  const { team, add, remove } = useTeamStore();
 
   useEffect(() => {
     if (!data?.flavor_text_entries?.length) return;
@@ -24,6 +26,13 @@ export function PokemonDetailsModal({ pokemonId, onClose }: Props) {
       setFlavorText(randomEntry.replace(/\f/g, " "));
     }, 100);
   }, [pokemonId, data?.flavor_text_entries]);
+
+  if (!pokemonId) {
+    return;
+  }
+
+  const isInTeam = team.includes(pokemonId);
+  const isFull = team.length >= 6 && !isInTeam;
 
   return (
     <Modal open={!!pokemonId} onClose={onClose}>
@@ -105,19 +114,26 @@ export function PokemonDetailsModal({ pokemonId, onClose }: Props) {
             Generation {data.generation}
           </div>
           <button
-            className="
+            disabled={isFull}
+            onClick={() => (isInTeam ? remove(pokemonId) : add(pokemonId))}
+            className={`
               mt-2 w-full
               border-4 border-black
-              bg-yellow-300
               font-bold uppercase
               py-2
               shadow-[4px_4px_0_#000]
               cursor-pointer
               transition-shadow transition-transform duration-200
               hover:translate-x-1 hover:translate-y-1 hover:shadow-[1px_1px_0_#000]
-            "
+          ${
+            isInTeam
+              ? "bg-yellow-300"
+              : "bg-white hover:translate-x-0.5 hover:translate-y-0.5"
+          }
+          ${isFull ? "opacity-40 cursor-not-allowed" : ""}
+        `}
           >
-            Add to Team
+            {isInTeam ? "Remove from Team" : "Add to Team"}
           </button>
         </div>
       )}
