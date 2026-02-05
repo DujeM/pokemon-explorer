@@ -36,6 +36,7 @@ export function Filter({ label, children }: FilterProps) {
           px-4 py-2 font-bold uppercase cursor-pointer
           shadow-[4px_4px_0_#000]
           active:translate-x-1 active:translate-y-1
+          w-full
         "
       >
         {label}

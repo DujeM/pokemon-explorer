@@ -5,7 +5,7 @@ export function Layout() {
   return (
     <>
       <Navbar />
-      <main className="py-15 px-6 max-w-7xl mx-auto w-full md:px-0">
+      <main className="py-7 md:py-15 px-3 md:px-6 max-w-7xl mx-auto w-full md:px-0">
         <Outlet />
       </main>
     </>

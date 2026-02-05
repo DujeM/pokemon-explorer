@@ -36,7 +36,7 @@ export function Search() {
           bg-white
           px-4 py-2
           font-bold
-          w-56
+          w-full md:w-56
           shadow-[4px_4px_0_#000]
           focus:outline-none
           placeholder:uppercase placeholder:text-gray-400

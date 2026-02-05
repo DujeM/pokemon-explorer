@@ -22,6 +22,7 @@ export function Modal({ open, onClose, children }: ModalProps) {
           max-h-[90vh]
           overflow-y-auto
           animate-modal-in
+          mx-3
         "
       >
         {children}
