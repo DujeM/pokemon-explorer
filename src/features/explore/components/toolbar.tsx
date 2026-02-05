@@ -8,8 +8,16 @@ import { Sort } from "./sort";
 
 import { Loading } from "@/shared/components/loading";
 import { FavoritesFilter } from "./favoritesFilter";
+import { ExportCsvButton } from "./exportCsvButton";
+import type { PokemonFilterData } from "../api/pokemonApi";
 
-export function Toolbar({ isLoading = false }: { isLoading?: boolean }) {
+export function Toolbar({
+  isLoading = false,
+  exportItems = [],
+}: {
+  isLoading?: boolean;
+  exportItems?: PokemonFilterData[];
+}) {
   const resetFilters = useFilterStore((s) => s.resetFilters);
 
   return (
@@ -34,6 +42,7 @@ export function Toolbar({ isLoading = false }: { isLoading?: boolean }) {
       <Sort />
       <FavoritesFilter />
       <div className="flex-1" />
+      <ExportCsvButton data={exportItems} />
       <button
         onClick={resetFilters}
         className={`
@@ -43,6 +52,8 @@ export function Toolbar({ isLoading = false }: { isLoading?: boolean }) {
           px-4 py-2
           font-bold uppercase
           shadow-[4px_4px_0_#000]
+          transition-transform transition-shadow 
+          hover:shadow-[1px_1px_0_#000] hover:translate-x-1 hover:translate-y-1
           active:translate-x-1 active:translate-y-1
         `}
         disabled={isLoading}
