@@ -5,10 +5,11 @@ export type StatRange = {
     max: number;
 };
 
-export type SortBy = "name" | "generation" | "attack" | "defense" | "speed" | "hp";
-export type SortOrder = "asc" | "desc";
+export type SortBy = "" | "name" | "generation" | "attack" | "defense" | "speed" | "hp";
+export type SortOrder = "" | "asc" | "desc";
 
 export type FilterState = {
+    hydrated: boolean;
     search: string;
     types: string[];
     generation: number[];
@@ -36,6 +37,7 @@ export type FilterState = {
     pageSize: number;
     setPage: (page: number) => void;
     setPageSize: (size: number) => void;
+    setFromUrl: (filters: Partial<FilterState>) => void;
 };
 
 const DEFAULT_STATS: FilterState["stats"] = {
@@ -46,6 +48,7 @@ const DEFAULT_STATS: FilterState["stats"] = {
 };
 
 export const useFilterStore = create<FilterState>((set) => ({
+    hydrated: false,
     page: 1,
     pageSize: 20,
     search: "",
@@ -53,8 +56,8 @@ export const useFilterStore = create<FilterState>((set) => ({
     generation: [],
     abilities: [],
     stats: DEFAULT_STATS,
-    sortBy: "name",
-    sortOrder: "asc",
+    sortBy: "",
+    sortOrder: "",
     setSearch: (value) => set({ search: value, page: 1 }),
     toggleType: (type) =>
         set((state) => ({
@@ -95,7 +98,14 @@ export const useFilterStore = create<FilterState>((set) => ({
             generation: [],
             abilities: [],
             stats: DEFAULT_STATS,
-            sortBy: "name",
-            sortOrder: "asc",
+            sortBy: "",
+            sortOrder: "",
+            page: 1,
+            pageSize: 20
         }),
+    setFromUrl: (filters) =>
+        set(() => ({
+            ...filters,
+            hydrated: true,
+        })),
 }));
