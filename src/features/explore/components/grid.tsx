@@ -18,8 +18,9 @@ export function Grid() {
     pokemonList?.map((pokemon: PokemonListItem) => pokemon.id),
     hasActiveFilters
   );
+  console.log(pokemonList);
   const { total, items } = useFilteredPokemon(pokemonDetailsList);
-
+  console.log(items);
   return (
     <>
       {hasActiveFilters && isFetching ? (

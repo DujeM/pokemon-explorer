@@ -63,7 +63,7 @@ export function Toolbar({
           md:block
         `}
       >
-        <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-3 flex-1">
+        <div className="flex flex-col md:flex-row md:flex-wrap md:items-center gap-2 md:gap-3 flex-1">
           <Search />
           <TypeFilter />
           <AbilityFilter />

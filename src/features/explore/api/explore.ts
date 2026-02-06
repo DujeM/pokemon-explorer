@@ -1,6 +1,6 @@
 import type { PokemonAbility, PokemonStat, PokemonType } from "@/shared/types/pokemon";
 
-const API_BASE_URL = import.meta.env.API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export type PokemonListItem = {
   name: string;
@@ -36,7 +36,7 @@ export async function fetchPokemonList() {
   }
 
   const data = await res.json();
-
+  console.log(data)
   return data.results.map((item: PokemonListResponse["results"][number]) => ({
     id: Number(item.url.split("/").at(-2)),
     name: item.name,

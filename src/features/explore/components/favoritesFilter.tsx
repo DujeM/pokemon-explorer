@@ -1,3 +1,4 @@
+import { Heart } from "lucide-react";
 import { useFilterStore } from "../store/filterStore";
 
 export function FavoritesFilter() {
@@ -7,6 +8,7 @@ export function FavoritesFilter() {
     <button
       onClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
       className={`
+          flex justify-center
           border-4 border-black
           px-4 py-2 font-bold uppercase cursor-pointer
           shadow-[4px_4px_0_#000]
@@ -14,7 +16,10 @@ export function FavoritesFilter() {
           ${showOnlyFavorites ? "bg-yellow-300" : "bg-white"}
         `}
     >
-      Favorites
+      <Heart
+        className="w-6 h-6 fill-red-500 stroke-black"
+        fill="currentColor"
+      />
     </button>
   );
 }
