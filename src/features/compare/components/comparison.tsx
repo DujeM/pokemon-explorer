@@ -1,4 +1,4 @@
-import { usePokemonDetails } from "@/features/explore/hooks/usePokemonDetails";
+import { usePokemonDetails } from "@/shared/hooks/usePokemonDetails";
 import { useCompareStore } from "../store/compareStore";
 import { PokemonCompareCard } from "./compareCard";
 import { StatsComparison } from "./statsComparison";

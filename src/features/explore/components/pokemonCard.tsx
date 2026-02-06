@@ -1,5 +1,5 @@
 import { Heart } from "lucide-react";
-import type { PokemonFilterData } from "../../features/explore/api/pokemonApi";
+import type { PokemonFilterData } from "../api/explore";
 import { useFavoritesStore } from "@/features/explore/store/favoritesStore";
 
 export function PokemonCard({

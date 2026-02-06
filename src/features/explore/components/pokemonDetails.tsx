@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Modal } from "@/shared/components/modal";
-import { usePokemonDetails } from "../hooks/usePokemonDetails";
-import type { PokemonStat } from "../api/pokemonApi";
 import { CircleX } from "lucide-react";
 import { useTeamStore } from "@/features/team/store/teamStore";
+import { usePokemonDetails } from "@/shared/hooks/usePokemonDetails";
+import type { PokemonStat } from "@/shared/types/pokemon";
 
 type Props = {
   pokemonId: number | null;

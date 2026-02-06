@@ -1,4 +1,4 @@
-import { fetchPokemonSummary, type PokemonFilterData } from "../api/pokemonApi";
+import { fetchPokemonSummary, type PokemonFilterData } from "../api/explore";
 
 export async function buildFilterIndex(
   ids: number[],

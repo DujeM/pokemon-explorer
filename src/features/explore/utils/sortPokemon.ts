@@ -1,4 +1,4 @@
-import type { PokemonFilterData } from "../api/pokemonApi";
+import type { PokemonFilterData } from "../api/explore";
 import type { FilterState } from "../store/filterStore";
 
 export function sortPokemon(filtered: PokemonFilterData[], filters: FilterState) {

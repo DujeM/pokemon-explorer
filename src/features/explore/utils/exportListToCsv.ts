@@ -1,4 +1,4 @@
-import type { PokemonFilterData } from "../api/pokemonApi";
+import type { PokemonFilterData } from "../api/explore";
 
 export function exportListToCsv(pokemons: PokemonFilterData[]) {
     if (!pokemons.length) return;

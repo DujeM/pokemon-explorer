@@ -1,5 +1,5 @@
-import { PokemonCard } from "../../../shared/components/pokemonCard";
-import type { PokemonListItem } from "../api/pokemonApi";
+import { PokemonCard } from "./pokemonCard";
+import type { PokemonListItem } from "../api/explore";
 import { usePokemonDetailsList } from "../hooks/usePokemonDetailsList";
 import { usePokemonList } from "../hooks/usePokemonList";
 import { useState } from "react";

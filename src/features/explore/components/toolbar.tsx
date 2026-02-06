@@ -9,7 +9,7 @@ import { Sort } from "./sort";
 import { Loading } from "@/shared/components/loading";
 import { FavoritesFilter } from "./favoritesFilter";
 import { ExportCsvButton } from "./exportCsvButton";
-import type { PokemonFilterData } from "../api/pokemonApi";
+import type { PokemonFilterData } from "../api/explore";
 
 export function Toolbar({
   isLoading = false,

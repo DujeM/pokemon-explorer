@@ -1,4 +1,4 @@
-import { usePokemonDetails } from "@/features/explore/hooks/usePokemonDetails";
+import { usePokemonDetails } from "@/shared/hooks/usePokemonDetails";
 
 export function TeamSlot({
   id,

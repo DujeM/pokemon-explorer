@@ -1,15 +1,4 @@
-import type { PokemonStat } from "@/features/explore/api/pokemonApi";
-
-function Bar({ value, max }: { value: number; max: number }) {
-  return (
-    <div className="flex-1 border-2 h-4">
-      <div
-        className="h-2 bg-black md:h-full"
-        style={{ width: `${(value / max) * 100}%` }}
-      />
-    </div>
-  );
-}
+import type { PokemonStat } from "@/shared/types/pokemon";
 
 export function StatsComparison({
   left,
@@ -44,6 +33,17 @@ export function StatsComparison({
           </div>
         );
       })}
+    </div>
+  );
+}
+
+function Bar({ value, max }: { value: number; max: number }) {
+  return (
+    <div className="flex-1 border-2 h-4">
+      <div
+        className="h-2 bg-black md:h-full"
+        style={{ width: `${(value / max) * 100}%` }}
+      />
     </div>
   );
 }

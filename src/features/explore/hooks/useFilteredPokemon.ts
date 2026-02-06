@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { filterPokemon } from "../utils/filterPokemon";
 import { useFilterStore } from "../store/filterStore";
-import type { PokemonFilterData } from "../api/pokemonApi";
+import type { PokemonFilterData } from "../api/explore";
 import { sortPokemon } from "../utils/sortPokemon";
 import { useFavoritesStore } from "../store/favoritesStore";
 
