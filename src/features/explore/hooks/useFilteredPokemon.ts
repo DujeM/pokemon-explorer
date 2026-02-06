@@ -1,9 +1,9 @@
 import { useMemo } from "react";
 import { filterPokemon } from "../utils/filterPokemon";
 import { useFilterStore } from "../store/filterStore";
-import type { PokemonFilterData } from "../api/explore";
 import { sortPokemon } from "../utils/sortPokemon";
 import { useFavoritesStore } from "../store/favoritesStore";
+import type { PokemonFilterData } from "../types/explore";
 
 export function useFilteredPokemon(filterIndex: PokemonFilterData[]) {
     const filters = useFilterStore();

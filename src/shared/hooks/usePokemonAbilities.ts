@@ -1,21 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-
-interface PokemonAbility {
-    name: string;
-    url: string;
-}
+import { apiFetch } from "../api/api-client";
+import type { ResourceList } from "../types/pokemon";
 
 export function usePokemonAbilities() {
-    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
     return useQuery({
         queryKey: ["reference", "abilities"],
         queryFn: async () => {
-            const res = await fetch(
-                `${API_BASE_URL}/ability/?limit=1000&offset=0`
-            );
-            const data = await res.json();
-            return data.results.map((a: PokemonAbility) => a.name);
+            const abilities = await apiFetch<ResourceList>('/ability/?limit=1000&offset=0');
+            return abilities.results.map(a => a.name);
         },
         staleTime: Infinity,
         gcTime: Infinity,

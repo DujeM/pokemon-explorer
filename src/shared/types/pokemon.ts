@@ -60,10 +60,24 @@ export type PokemonResponse = {
     types: PokemonType[];
     stats: PokemonStat[];
     abilities: PokemonAbility[];
+    height: number;
+    weight: number;
 }
 
 export type SpeciesResponse = {
+    name: string;
+    flavor_text_entries: PokemonFlavorTextEntry[];
+    habitat: {
+        name: string;
+    }
     generation: {
         url: string;
     }
+}
+
+export type ResourceList = {
+    results: {
+        name: string,
+        url: string
+    }[];
 }

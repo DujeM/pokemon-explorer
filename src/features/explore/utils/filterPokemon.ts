@@ -1,5 +1,5 @@
-import type { PokemonFilterData } from "../api/explore";
 import type { FilterState } from "../store/filterStore";
+import type { PokemonFilterData } from "../types/explore";
 
 export function filterPokemon(
     pokemon: PokemonFilterData,

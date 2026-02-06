@@ -1,4 +1,4 @@
-import type { PokemonDetailsData } from "@/features/explore/api/explore";
+import type { PokemonDetailsData } from "@/shared/types/pokemon";
 
 export function PokemonCompareCard({
   pokemon,

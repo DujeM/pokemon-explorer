@@ -1,19 +1,9 @@
-import type { PokemonAbility, PokemonDetailsData, PokemonFlavorTextEntry, PokemonType } from "../types/pokemon";
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import type { PokemonAbility, PokemonDetailsData, PokemonFlavorTextEntry, PokemonResponse, PokemonType, SpeciesResponse } from "../types/pokemon";
+import { apiFetch } from "./api-client";
 
 export async function fetchPokemonDetails(id: number): Promise<PokemonDetailsData> {
-    const [pokemonRes, speciesRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/pokemon/${id}`),
-        fetch(`${API_BASE_URL}/pokemon-species/${id}`),
-    ]);
-
-    if (!pokemonRes.ok || !speciesRes.ok) {
-        throw new Error("Failed to fetch Pokémon details");
-    }
-
-    const pokemon = await pokemonRes.json();
-    const species = await speciesRes.json();
+    const pokemon = await apiFetch<PokemonResponse>(`/pokemon/${id}`);
+    const species = await apiFetch<SpeciesResponse>(`/pokemon-species/${id}`);
 
     return {
         id: pokemon.id,

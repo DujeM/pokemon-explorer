@@ -14,11 +14,3 @@ export type PokemonFilterData = {
     stats: PokemonStat[];
     abilities: string[];
 };
-
-
-export type PokemonListResponse = {
-    results: {
-        name: string;
-        url: string;
-    }[];
-}

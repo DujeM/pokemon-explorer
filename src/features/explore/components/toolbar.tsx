@@ -87,7 +87,7 @@ export function Toolbar({
               font-bold uppercase
               shadow-[4px_4px_0_#000]
               transition
-              hover:translate-x-0.5 hover:translate-y-0.5
+              hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[1px_1px_0_#000]
               disabled:opacity-40
             "
           >
