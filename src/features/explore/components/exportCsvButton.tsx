@@ -1,4 +1,4 @@
-import type { PokemonFilterData } from "../api/explore";
+import type { PokemonFilterData } from "../types/explore";
 import { exportListToCsv } from "../utils/exportListToCsv";
 
 type Props = {

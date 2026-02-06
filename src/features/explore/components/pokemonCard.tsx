@@ -1,6 +1,6 @@
 import { Heart } from "lucide-react";
-import type { PokemonFilterData } from "../api/explore";
 import { useFavoritesStore } from "@/features/explore/store/favoritesStore";
+import type { PokemonFilterData } from "../types/explore";
 
 export function PokemonCard({
   id,

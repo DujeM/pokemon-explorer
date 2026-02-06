@@ -104,7 +104,8 @@ export const useFilterStore = create<FilterState>((set) => ({
             sortBy: "",
             sortOrder: "",
             page: 1,
-            pageSize: 20
+            pageSize: 20,
+            showOnlyFavorites: false
         }),
     setFromUrl: (filters) =>
         set(() => ({

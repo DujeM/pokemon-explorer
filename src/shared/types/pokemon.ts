@@ -50,3 +50,20 @@ export interface PokemonAbility {
     is_hidden: boolean;
     slot: number;
 };
+
+export type PokemonResponse = {
+    id: number;
+    name: string;
+    sprites: {
+        front_default: string;
+    };
+    types: PokemonType[];
+    stats: PokemonStat[];
+    abilities: PokemonAbility[];
+}
+
+export type SpeciesResponse = {
+    generation: {
+        url: string;
+    }
+}

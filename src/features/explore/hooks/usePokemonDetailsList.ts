@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { buildFilterIndex } from "../utils/buildFilterIndex";
-import type { PokemonFilterData } from "../api/explore";
+import type { PokemonFilterData } from "../types/explore";
 
 export function usePokemonDetailsList(ids: number[], hasActiveFilters = false) {
   const queryClient = useQueryClient();

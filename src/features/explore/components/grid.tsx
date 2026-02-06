@@ -1,5 +1,4 @@
 import { PokemonCard } from "./pokemonCard";
-import type { PokemonListItem } from "../api/explore";
 import { usePokemonDetailsList } from "../hooks/usePokemonDetailsList";
 import { usePokemonList } from "../hooks/usePokemonList";
 import { useState } from "react";
@@ -15,12 +14,12 @@ export function Grid() {
   const hasActiveFilters = useHasActiveFiltersInParams();
   const { data: pokemonList } = usePokemonList();
   const { data: pokemonDetailsList = [], isFetching } = usePokemonDetailsList(
-    pokemonList?.map((pokemon: PokemonListItem) => pokemon.id),
+    pokemonList ? pokemonList.map((pokemon) => pokemon.id) : [],
     hasActiveFilters
   );
-  console.log(pokemonList);
+
   const { total, items } = useFilteredPokemon(pokemonDetailsList);
-  console.log(items);
+
   return (
     <>
       {hasActiveFilters && isFetching ? (

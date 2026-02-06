@@ -1,32 +1,9 @@
-import type { PokemonAbility, PokemonStat, PokemonType } from "@/shared/types/pokemon";
+import type { PokemonAbility, PokemonResponse, PokemonStat, PokemonType, SpeciesResponse } from "@/shared/types/pokemon";
+import type { PokemonFilterData, PokemonListItem, PokemonListResponse } from "../types/explore";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export type PokemonListItem = {
-  name: string;
-  url: string;
-  id: number;
-};
-
-export type PokemonFilterData = {
-  id: number;
-  image: string;
-  name: string;
-  types: string[];
-  generation: number;
-  stats: PokemonStat[];
-  abilities: string[];
-};
-
-
-interface PokemonListResponse {
-  results: {
-    name: string;
-    url: string;
-  }[];
-}
-
-export async function fetchPokemonList() {
+export async function fetchPokemonList(): Promise<PokemonListItem[]> {
   const res = await fetch(
     `${API_BASE_URL}/pokemon?limit=100000&offset=0`
   );
@@ -35,9 +12,9 @@ export async function fetchPokemonList() {
     throw new Error("Failed to fetch Pokémon index");
   }
 
-  const data = await res.json();
-  console.log(data)
-  return data.results.map((item: PokemonListResponse["results"][number]) => ({
+  const data: PokemonListResponse = await res.json();
+
+  return data.results.map((item) => ({
     id: Number(item.url.split("/").at(-2)),
     name: item.name,
   }));
@@ -53,8 +30,8 @@ export async function fetchPokemonSummary(id: number): Promise<PokemonFilterData
     throw new Error("Failed to fetch Pokémon summary");
   }
 
-  const pokemon = await pokemonRes.json();
-  const species = await speciesRes.json();
+  const pokemon: PokemonResponse = await pokemonRes.json();
+  const species: SpeciesResponse = await speciesRes.json();
 
   return {
     id: pokemon.id,

@@ -15,7 +15,7 @@ export function Navbar() {
             width="40"
             height="40"
           />
-          <h1 className="text-xl font-black uppercase">Pokemon</h1>
+          <h1 className="text-xl font-black uppercase">Pokémon</h1>
         </Link>
         <div className="hidden md:flex gap-6 items-center">
           <NavLink to="/explore">Explore</NavLink>

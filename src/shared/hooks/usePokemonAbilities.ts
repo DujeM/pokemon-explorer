@@ -6,11 +6,13 @@ interface PokemonAbility {
 }
 
 export function usePokemonAbilities() {
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
     return useQuery({
         queryKey: ["reference", "abilities"],
         queryFn: async () => {
             const res = await fetch(
-                "https://pokeapi.co/api/v2/ability/?limit=1000&offset=0"
+                `${API_BASE_URL}/ability/?limit=1000&offset=0`
             );
             const data = await res.json();
             return data.results.map((a: PokemonAbility) => a.name);

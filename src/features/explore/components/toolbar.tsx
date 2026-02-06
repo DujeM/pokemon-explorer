@@ -9,7 +9,7 @@ import { Sort } from "./sort";
 import { Loading } from "@/shared/components/loading";
 import { FavoritesFilter } from "./favoritesFilter";
 import { ExportCsvButton } from "./exportCsvButton";
-import type { PokemonFilterData } from "../api/explore";
+import type { PokemonFilterData } from "../types/explore";
 
 export function Toolbar({
   isLoading = false,
@@ -80,6 +80,7 @@ export function Toolbar({
             onClick={resetFilters}
             disabled={isLoading}
             className="
+              cursor-pointer
               border-4 border-black
               bg-red-200
               px-4 py-2
