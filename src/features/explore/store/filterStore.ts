@@ -90,7 +90,12 @@ export const useFilterStore = create<FilterState>((set) => ({
                 [stat]: range,
             },
         })),
-    setSortBy: (value) => set({ sortBy: value, page: 1 }),
+    setSortBy: (value) =>
+        set((state) => ({
+            sortBy: value,
+            sortOrder: state.sortOrder === "" ? "asc" : state.sortOrder,
+            page: 1,
+        })),
     setSortOrder: (value) => set({ sortOrder: value, page: 1 }),
     setPage: (value) => set({ page: value }),
     setPageSize: (value) => set({ pageSize: value }),

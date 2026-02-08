@@ -13,7 +13,11 @@ export function Grid() {
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const hasActiveFilters = useHasActiveFiltersInParams();
   const { data: pokemonList } = usePokemonList();
-  const { data: pokemonDetailsList = [], isFetching } = usePokemonDetailsList(
+  const {
+    data: pokemonDetailsList = [],
+    isFetching,
+    isError,
+  } = usePokemonDetailsList(
     pokemonList ? pokemonList.map((pokemon) => pokemon.id) : [],
     hasActiveFilters
   );
@@ -22,7 +26,20 @@ export function Grid() {
 
   return (
     <>
-      {hasActiveFilters && isFetching ? (
+      {isError ? (
+        <div
+          data-testid="pokemon-error"
+          className="flex flex-col items-center justify-center py-12"
+        >
+          <span className="text-lg font-bold mb-2 text-red-600">
+            Failed to load Pokémon.
+          </span>
+          <span className="text-gray-600">
+            Something went wrong while fetching Pokémon data. Please try again
+            later.
+          </span>
+        </div>
+      ) : hasActiveFilters && isFetching ? (
         <div
           data-testid="pokemon-loading"
           className="flex flex-col items-center justify-center py-12"

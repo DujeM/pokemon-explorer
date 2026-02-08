@@ -4,7 +4,7 @@ import { usePokemonList } from "@/features/explore/hooks/usePokemonList";
 
 export function Compare() {
   const { data: pokemonList } = usePokemonList();
-  console.log(pokemonList);
+
   return (
     <>
       {pokemonList && <PokemonCompareSelector options={pokemonList} />}

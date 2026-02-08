@@ -1,73 +1,104 @@
-# React + TypeScript + Vite
+# Pokémon Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Technologies Used
 
-Currently, two official plugins are available:
+- **React** – UI and application logic
+- **Vite** – Fast development server and build tool
+- **React Router** – Client-side routing
+- **Zustand** - UI state
+- **TanStack Query (React Query)** – Data fetching, caching, and background updates
+- **Vitest** – Unit and component testing
+- **Playwright** – End-to-end (E2E) testing
+- **ESLint** – Code quality and linting
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Getting Started
 
-## React Compiler
+### Install dependencies
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Start development server
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
 ```
+
+The app will be available at `http://localhost:5173` (default Vite port).
+
+### Build for production
+
+```bash
+npm run build
+```
+
+### Run tests
+
+```bash
+# unit / component tests
+npm run test
+
+# end-to-end tests
+npx playwright test
+```
+
+## Project Architecture
+
+The project follows a **feature-based architecture** with shared infrastructure extracted into a shared layer.
+
+```
+src/
+├── app/            # App-level setup (routing, providers)
+├── features/       # Feature modules (explore, team, compare)
+├── shared/         # Reusable cross-feature code
+├── test/           # Test utilities and MSW setup
+├── main.tsx        # Application entry point
+└── index.css       # Global styles
+```
+
+### Feature Modules (`src/features`)
+
+Each feature is self-contained and organized by responsibility:
+
+```
+features/explore/
+├── api/            # Feature specific API calls
+├── components/     # UI components and feature specific sections
+├── hooks/          # Feature specific hooks
+├── store/          # Local state
+├── types/          # TypeScript types
+└── utils/          # Pure utility functions
+```
+
+### Shared Layer (`src/shared`)
+
+Contains reusable building blocks used across multiple features:
+
+- **api/** – API client setup and shared endpoints
+- **components/** – Generic UI components (layout, modal, loading)
+- **hooks/** – Shared hooks
+- **types/** – Shared TypeScript types
+
+### App Layer (`src/app`)
+
+Responsible for:
+
+- Route configuration
+- Global providers (Router, QueryClient)
+- Application layout
+
+## Testing Approach
+
+### Unit & Component Tests (Vitest)
+
+- Pure functions (utils) are tested in isolation
+- Components are tested with **Testing Library**
+- API calls are mocked using **MSW**
+- Tests focus on behavior, not implementation details
+
+### End-to-End Tests (Playwright)
+
+- Located in `/e2e`
+- Validate full user flows (navigation, filtering, adding Pokémon)
+- Run against a real browser environment

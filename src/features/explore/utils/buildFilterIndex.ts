@@ -4,7 +4,7 @@ import type { PokemonFilterData } from "../types/explore";
 export async function buildFilterIndex(
   ids: number[],
   onProgress: (data: PokemonFilterData) => void,
-  concurrency = 5
+  concurrency = 50
 ) {
   const queue = [...ids];
   const workers: Promise<void>[] = [];
