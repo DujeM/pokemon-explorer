@@ -1,8 +1,11 @@
 import type { FilterState } from "../store/filterStore";
 import type { PokemonFilterData } from "../types/explore";
 
-export function sortPokemon(filtered: PokemonFilterData[], filters: FilterState) {
-    return filtered.sort((a, b) => {
+export function sortPokemon(
+    filtered: PokemonFilterData[],
+    filters: FilterState
+) {
+    return [...filtered].sort((a, b) => {
         const dir = filters.sortOrder === "asc" ? 1 : -1;
 
         if (filters.sortBy === "name") {
@@ -14,7 +17,8 @@ export function sortPokemon(filtered: PokemonFilterData[], filters: FilterState)
         }
 
         return (
-            ((a.stats.find((s) => s.stat.name === filters.sortBy)?.base_stat ?? 0) - (b.stats.find((s) => s.stat.name === filters.sortBy)?.base_stat ?? 0)) *
+            ((a.stats.find((s) => s.stat.name === filters.sortBy)?.base_stat ?? 0) -
+                (b.stats.find((s) => s.stat.name === filters.sortBy)?.base_stat ?? 0)) *
             dir
         );
     });

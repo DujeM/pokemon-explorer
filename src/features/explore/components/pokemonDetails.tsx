@@ -39,7 +39,7 @@ export function PokemonDetailsModal({ pokemonId, onClose }: Props) {
       {isLoading || !data ? (
         <div className="text-center font-bold">Loading…</div>
       ) : (
-        <div className="flex flex-col gap-4">
+        <div data-testid="pokemon-details" className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-extrabold uppercase tracking-wide">
               {data.name}

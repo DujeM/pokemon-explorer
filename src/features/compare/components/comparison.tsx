@@ -12,7 +12,10 @@ export function Comparison() {
 
   if (leftQuery.isLoading || rightQuery.isLoading) {
     return (
-      <section className="mt-6 border-4 bg-white p-4 shadow-[6px_6px_0_0_#000]">
+      <section
+        data-testid="loading-comparison"
+        className="mt-6 border-4 bg-white p-4 shadow-[6px_6px_0_0_#000]"
+      >
         <p className="font-bold">Loading comparison…</p>
       </section>
     );
@@ -36,7 +39,10 @@ export function Comparison() {
   const right = rightQuery.data;
 
   return (
-    <section className="mt-6 border-4 bg-white p-4 sm:p-6 shadow-[6px_6px_0_0_#000]">
+    <section
+      data-testid="comparison-section"
+      className="mt-6 border-4 bg-white p-4 sm:p-6 shadow-[6px_6px_0_0_#000]"
+    >
       <header className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h2 className="text-xl sm:text-2xl font-black uppercase">
           Pokémon Comparison

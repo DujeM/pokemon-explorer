@@ -63,6 +63,7 @@ export function PokemonSearchSelect({
         onClick={() => setOpen(true)}
       >
         <input
+          id={label}
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);

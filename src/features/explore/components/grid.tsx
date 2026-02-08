@@ -23,7 +23,10 @@ export function Grid() {
   return (
     <>
       {hasActiveFilters && isFetching ? (
-        <div className="flex flex-col items-center justify-center py-12">
+        <div
+          data-testid="pokemon-loading"
+          className="flex flex-col items-center justify-center py-12"
+        >
           <Loading />
           <span className="text-lg font-bold mb-2">
             Loading filtered Pokémon...
@@ -38,7 +41,10 @@ export function Grid() {
             isLoading={!hasActiveFilters && isFetching}
             exportItems={items}
           />
-          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+          <div
+            data-testid="pokemon-grid"
+            className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6"
+          >
             {items.map((pokemon) => (
               <PokemonCard
                 key={pokemon.id}

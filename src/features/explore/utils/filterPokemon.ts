@@ -3,7 +3,7 @@ import type { PokemonFilterData } from "../types/explore";
 
 export function filterPokemon(
     pokemon: PokemonFilterData,
-    filters: FilterState,
+    filters: Partial<FilterState>,
     favorites: number[] = []
 ): boolean {
     if (
@@ -21,13 +21,16 @@ export function filterPokemon(
     }
 
     if (
+        filters.types &&
         filters.types.length &&
         !filters.types.some((t) => pokemon.types.includes(t))
     ) {
         return false;
     }
 
+
     if (
+        filters.generation &&
         filters.generation.length &&
         !filters.generation.some((g) => g === pokemon.generation)
     ) {
@@ -35,6 +38,7 @@ export function filterPokemon(
     }
 
     if (
+        filters.abilities &&
         filters.abilities.length &&
         !filters.abilities.some((a) => pokemon.abilities.includes(a))
     ) {
@@ -45,7 +49,7 @@ export function filterPokemon(
         (stat) => stat.stat.name === "attack"
     )?.base_stat;
     if (
-        attack &&
+        attack && filters.stats &&
         (attack < filters.stats.attack.min || attack > filters.stats.attack.max)
     ) {
         return false;
@@ -55,7 +59,7 @@ export function filterPokemon(
         (stat) => stat.stat.name === "defense"
     )?.base_stat;
     if (
-        defense &&
+        defense && filters.stats &&
         (defense < filters.stats.defense.min ||
             defense > filters.stats.defense.max)
     ) {
@@ -65,7 +69,7 @@ export function filterPokemon(
     const hp = pokemon.stats.find(
         (stat) => stat.stat.name === "hp"
     )?.base_stat;
-    if (hp && (hp < filters.stats.hp.min || hp > filters.stats.hp.max)) {
+    if (hp && filters.stats && (hp < filters.stats.hp.min || hp > filters.stats.hp.max)) {
         return false;
     }
 
@@ -73,7 +77,7 @@ export function filterPokemon(
         (stat) => stat.stat.name === "speed"
     )?.base_stat;
     if (
-        speed &&
+        speed && filters.stats &&
         (speed < filters.stats.speed.min || speed > filters.stats.speed.max)
     ) {
         return false;
