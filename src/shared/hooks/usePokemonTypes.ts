@@ -9,7 +9,6 @@ export function usePokemonTypes() {
             const types = await apiFetch<ResourceList>('/type/?limit=1000&offset=0');
             return types.results.map(t => t.name);
         },
-        staleTime: Infinity,
-        gcTime: Infinity,
+        staleTime: 24 * 60 * 60 * 1000,
     });
 }

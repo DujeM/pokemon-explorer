@@ -9,7 +9,6 @@ export function usePokemonAbilities() {
             const abilities = await apiFetch<ResourceList>('/ability/?limit=1000&offset=0');
             return abilities.results.map(a => a.name);
         },
-        staleTime: Infinity,
-        gcTime: Infinity,
+        staleTime: 24 * 60 * 60 * 1000,
     });
 }

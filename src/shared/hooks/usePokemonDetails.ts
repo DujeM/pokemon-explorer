@@ -9,6 +9,6 @@ export function usePokemonDetails(id: number | null) {
             return await fetchPokemonDetails(id);
         },
         enabled: !!id,
-        staleTime: Infinity,
+        staleTime: 24 * 60 * 60 * 1000,
     });
 }

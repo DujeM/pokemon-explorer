@@ -12,7 +12,6 @@ export function usePokemonGenerations() {
                 name: g.name,
             }));
         },
-        staleTime: Infinity,
-        gcTime: Infinity,
+        staleTime: 24 * 60 * 60 * 1000,
     });
 }

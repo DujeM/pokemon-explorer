@@ -5,6 +5,6 @@ export function usePokemonList() {
   return useQuery({
     queryKey: ["pokemon", "list"],
     queryFn: fetchPokemonList,
-    staleTime: Infinity,
+    staleTime: 24 * 60 * 60 * 1000,
   });
 }
